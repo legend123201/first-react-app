@@ -1,10 +1,63 @@
 import React from "react"; //import object React từ module react, module này trong nodejs
 import ReactDOM from "react-dom";
-import "bootstrap/dist/css/bootstrap.css";
+//import "bootstrap/dist/css/bootstrap.css";
 
 //import name, { birth, getLastName } from "./Day 5/Name"; //cách import 1
 //import * as name2 from "./Day 5/Name2"; //cách import 2
 
+//-----------------------Day 17--------------------------------
+import App from "./Day 17/App";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import store from "./store";
+
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
+);
+
+/*
+//-----------------------reduxTutorial--------------------------------
+import App from "./reduxTutorial/App";
+ReactDOM.render(<App></App>, document.getElementById("root"));
+*/
+
+/*
+//-----------------------mui--------------------------------
+import App from "./mui/App";
+
+ReactDOM.render(<App></App>, document.getElementById("root"));
+*/
+
+/*
+//-----------------------Day 15--------------------------------
+import Todo from "./Day 15/Todo";
+import { applyMiddleware, createStore } from "redux";
+import todoReducer from "./Day 15/redux/todoReducer";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+
+const store = createStore(
+  todoReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Todo></Todo>
+  </Provider>,
+
+  document.getElementById("root")
+);
+*/
+
+/*
+//-----------------------Day 10--------------------------------
 import { BrowserRouter } from "react-router-dom";
 import { Switch, Route } from "react-router";
 import Todo from "./Day 10/Todo";
@@ -23,6 +76,8 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById("root")
 );
+*/
+
 /*
 //-----------------------Day 6--------------------------------
 import Card from "./Day 6/Card";

@@ -1,21 +1,26 @@
 import React, { Component, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { v1 as uuidv1 } from "uuid"; //npm i uuid
-import userList from "./UserList";
 import "./styles.css";
 import TodoItem from "./TodoItem";
 import TodoService from "./services/TodoService";
+import { useDispatch, useSelector } from "react-redux";
 
 const Todo = (props) => {
-  const [todoList, setTodoList] = useState([]); //userList[0].todoList
+  const todoList = useSelector((state) => state); //dòng này chưa hiểu gì cả?
+  const dispatch = useDispatch(); //tại sao nó hiểu dispatch nào???
+
   const [currentInput, setcurrentInput] = useState("");
   const [isUpdate, setIsUpdate] = useState(false);
   const [currentTodoID, setCurrentTodoID] = useState(null);
   const [errorString, setErrorString] = useState("");
 
   useEffect(() => {
-    fetchAllTodos();
+    fetchAllTodo();
   }, []);
+
+  const fetchAllTodo = () => {
+    dispatch(TodoService.getAll());
+  };
 
   const onInputChange = (event) => {
     setcurrentInput(event.target.value);
@@ -29,24 +34,13 @@ const Todo = (props) => {
       return;
     }
 
-    TodoService.postTodo({
-      value: currentInputTrim,
-      status: "active",
-    }).then((response) => {
-      fetchAllTodos();
-    });
-
-    //thêm vào todo list
-    /*
-    setTodoList([
-      ...todoList,
-      {
-        id: uuidv1(),
+    dispatch(
+      TodoService.postTodo({
+        id: Date.now(),
         value: currentInputTrim,
         status: "active",
-      },
-    ]);
-    */
+      })
+    );
 
     //sau khi thêm xóa trắng ô input và errorString
     setcurrentInput("");
@@ -54,45 +48,17 @@ const Todo = (props) => {
   };
 
   const handleDoneTodo = (id) => {
-    //tìm phần tử đang sửa và sửa status
     let updateItem = todoList.find((item) => item.id === id);
-
-    TodoService.putTodo(id, {
-      ...updateItem,
-      status: "inactive",
-    }).then((response) => {
-      fetchAllTodos();
-    });
-
-    /*
-    let copyList = [...todoList];
-
-    //tìm phần tử todo trong mảng và set active
-    let updateItemIndex = copyList.findIndex((item) => item.id === id);
-    copyList[updateItemIndex].status = "inactive";
-
-    //làm mới todo list
-    setTodoList(copyList);
-    */
+    dispatch(
+      TodoService.putTodo(id, {
+        ...updateItem,
+        status: "inactive",
+      })
+    );
   };
 
   const handleDeleteTodo = (id) => {
-    TodoService.deleteTodo(id).then((response) => {
-      fetchAllTodos();
-    });
-
-    /*
-    let copyList = [...todoList];
-
-    
-    //lọc các phần tử, bỏ đi phần tử có id đang cần xóa
-    let newList = copyList.filter((item) => {
-      return item.id !== id;
-    });
-
-    //làm mới todo list
-    setTodoList(newList);
-    */
+    dispatch(TodoService.deleteTodo(id));
   };
 
   //khởi đầu việc update
@@ -124,43 +90,19 @@ const Todo = (props) => {
       return;
     }
 
-    /*
-    let copyList = [...todoList];
-
-    //tìm phần tử đang sửa và sửa value
-    let updateItemIndex = copyList.findIndex(
-      (item) => item.id === currentTodoID
-    );
-    copyList[updateItemIndex].value = currentInputTrim;
-    setTodoList(copyList);
-    */
-
-    /*ở trên cần tạo thêm copyList vì lúc đó mình ko có api,
-    mình update list dựa trên list cũ, 
-    tạo ra copyList để có thể sửa đổi thoải mái list cũ sau đó mới setTodoList,
-    (vì sửa thẳng state thì nó ko cho thì quá cơ bản rồi)
-    */
-    //tìm phần tử đang sửa và sửa value
     let updateItem = todoList.find((item) => item.id === currentTodoID);
-
-    TodoService.putTodo(currentTodoID, {
-      ...updateItem,
-      value: currentInputTrim,
-    }).then((response) => {
-      fetchAllTodos();
-    });
+    dispatch(
+      TodoService.putTodo(currentTodoID, {
+        ...updateItem,
+        value: currentInputTrim,
+      })
+    );
 
     //sửa xong xóa trắng ô input và hoàn thành việc sửa (isUpdate thành false lại)
     setcurrentInput("");
     setIsUpdate(false);
     setCurrentTodoID(null); //set id phần tử đang sửa về lại null cho an toàn
     setErrorString(""); //xóa trắng phần errorString
-  };
-
-  const fetchAllTodos = () => {
-    TodoService.getAll().then((response) => {
-      setTodoList(response.data);
-    });
   };
 
   return (
@@ -196,40 +138,6 @@ const Todo = (props) => {
             onDeleteTodo={handleDeleteTodo}
             onStartUpdateTodo={handleStartUpdateTodo}
           ></TodoItem>
-          // <div
-          //   className={
-          //     item.id === currentTodoID ? "todo-item bg-change" : "todo-item"
-          //   }
-          //   key={item.id}
-          // >
-          //   <p className={item.status === "inactive" ? "line-through" : ""}>
-          //     {item.value}
-          //   </p>
-          //   <button
-          //     disabled={isUpdate}
-          //     onClick={() => {
-          //       handleDoneTodo(item.id);
-          //     }}
-          //   >
-          //     Done
-          //   </button>
-          //   <button
-          //     disabled={isUpdate}
-          //     onClick={() => {
-          //       handleDeleteTodo(item.id);
-          //     }}
-          //   >
-          //     Delete
-          //   </button>
-          //   <button
-          //     disabled={isUpdate}
-          //     onClick={() => {
-          //       handleStartUpdateTodo(item.id);
-          //     }}
-          //   >
-          //     Update
-          //   </button>
-          // </div>
         ))}
       </div>
     </>

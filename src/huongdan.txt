@@ -1,0 +1,11 @@
+- components: là từ video đầu tiên về react, làm về counter, và dùng class component.
+
+- day 5: làm về export, export default và cách import.
+
+- day 6: làm về thêm xóa sửa todoList, interval và giải thích về state.
+
+- day 10: làm về route, thêm xóa sửa todolist với ko có và có api. 
+
+- day 15: làm về thêm xóa sửa todoList với redux + api.
+
+- dau 17: code của anh Huy về mui. Custom hook, common-components. có thêm xóa sửa userList bằng api và ko bằng api.
