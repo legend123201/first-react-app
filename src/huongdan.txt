@@ -8,4 +8,6 @@
 
 - day 15: làm về thêm xóa sửa todoList với redux + api.
 
-- dau 17: code của anh Huy về mui. Custom hook, common-components. có thêm xóa sửa userList bằng api và ko bằng api.
+- day 17: code của anh Huy về mui. Custom hook, common-components. có thêm xóa sửa userList bằng api và ko bằng api + redux + tách thêm actionReducer.
+
+- cai tien day 17: sử dụng "reusing reducer logic" (1 trường hợp hay của redux, có trên trang redux). Tạo 2 danh sách User và Todo và làm việc trên 2 ds đó.

@@ -6,7 +6,7 @@ import ReactDOM from "react-dom";
 //import * as name2 from "./Day 5/Name2"; //cách import 2
 
 //-----------------------Day 17--------------------------------
-import App from "./Day 17/App";
+import App from "./Cai Tien Day 17/App";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import store from "./store";
