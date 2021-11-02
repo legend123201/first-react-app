@@ -36,7 +36,6 @@ const userReducer = (state = initialUsers, action) => {
     case ACTIONS.ADD_USER:
     case ACTIONS.DEL_USER:
     case ACTIONS.EDIT_USER:
-      console.log("1");
       //have no payload
       return {
         ...state,
@@ -47,7 +46,6 @@ const userReducer = (state = initialUsers, action) => {
     case ACTIONS.ADD_USER_FAILURE:
     case ACTIONS.DEL_USER_FAILURE:
     case ACTIONS.EDIT_USER_FAILURE:
-      console.log("2");
       //payload is a error string
       return {
         ...state,

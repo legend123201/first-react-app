@@ -58,7 +58,8 @@ const Users = () => {
   //thế là useEffect chạy 2 lần, nó xuất ra 2 thông báo lỗi trong khi mình chỉ cần 1 là đủ
   //có 2 cách sửa, 1 là dùng hàm callback, 2 là vẫn xài useEffect này, nhưng cái dispatch đầu tiên phải set isSuccess là cái gì đó như null, "unknow",...và sau đó để điều kiện trong useEffect này là if(isSuccess === true) thì nó mới ko xuất ra 2 dòng lỗi, nhưng useEffect vẫn chạy 2 lần (đúng rồi tại có state thay đổi 2 lần mà)
   //mình đã test thử trường hợp và thấy là nếu global state diff trong redux nó ghi state equal thì useEffect ko chạy lại
-  //=> state thay đổi thì useEffect chạy lại, vì state (state này có thể là state của mình, hoặc là global state có sử dụng trong này với useSelector, vậy thì mình đã dùng global state làm local state cho mình) thay đổi đồng nghĩa là render lại, mà render lại thì nếu useEffect ko có dependency thì nó sẽ chạy lại  
+  //=> state thay đổi thì useEffect chạy lại, vì state (state này có thể là state của mình, hoặc là global state có sử dụng trong này với useSelector, vậy thì mình đã dùng global state làm local state cho mình) thay đổi đồng nghĩa là render lại, mà render lại thì nếu useEffect ko có dependency thì nó sẽ chạy lại 
+  //trên mạng search "khi nào react render lại" để hiểu thêm 
   useEffect(() => {
     console.log("run!");
     if (!isSuccess) {
