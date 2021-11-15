@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router";
 import "./App.css";
 import AddUser from "./components/AddUser";
 import AddTodo from "./components/AddTodo";
+import AddProduct from "./components/AddProduct";
 import Users from "./components/Users";
 import Todos from "./components/Todos";
 import EditUser from "./components/EditUser";
@@ -32,6 +33,7 @@ function App() {
           <Route path="/all-todo" component={Todos}></Route>
           <Route path="/add-todo" component={AddTodo}></Route>
           <Route path="/edit-todo/:id" component={EditTodo}></Route>
+          <Route path="/add-product" component={AddProduct}></Route>
           <Route path="/login" component={SignIn}></Route>
           <Route component={NotFoundCom}></Route>
         </Switch>

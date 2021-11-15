@@ -38,6 +38,10 @@ const SideBar = () => {
       name: "Add todo",
       link: "/add-todo",
     },
+    {
+      name: "Add product",
+      link: "/add-product",
+    },
   ];
 
   return (

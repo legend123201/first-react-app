@@ -26,15 +26,8 @@ const SignIn = (props) => {
         props.setToken(response.data.token);
       }
     } catch (e) {
-      console.log(e.response.data);
-      if (
-        data.email.trim() === "a@gmail.com" &&
-        data.password.trim() === "123"
-      ) {
-        props.setToken("fake-token");
-      } else {
-        alert("Sai thông tin đăng nhập! Vui lòng kiểm tra lại!");
-      }
+      //console.log(e.response.data);
+      props.setToken("fake-token");
     }
   };
 
@@ -73,9 +66,8 @@ const SignIn = (props) => {
             Sign in
           </Typography>
           <Typography sx={{ textAlign: "center" }} component="p" variant="h5">
-            Hãy nhập email:
-            <span style={{ color: "#FF0000" }}>a@gmail.com</span> và password:
-            <span style={{ color: "#FF0000" }}>123</span>
+            Không cần nhập gì cả, cứ bấm
+            <p style={{ color: "#FF0000" }}> Sign in</p>
           </Typography>
           <Box
             component="form"
