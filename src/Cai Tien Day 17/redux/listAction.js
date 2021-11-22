@@ -16,9 +16,10 @@ const fetchAllSuccess = (listName, arrData) => {
 };
 
 const fetchAllFailure = (listName, strError) => {
+  //sẽ có trường hợp strError rỗng, vì mình lấy strError là lỗi từ server trả về, nhưng nếu đường link api sai thì server đâu thể trả về
   return {
     type: ACTIONS.FETCH_ALL_FAILURE,
-    payload: "Fetch item error! " + strError,
+    payload: "Fetch item error! " + (strError ? strError : "Lỗi call api!"),
     listName: listName,
   };
 };
@@ -30,10 +31,9 @@ const addItem = (listName) => {
   };
 };
 
-const addItemSuccess = (listName, newItem) => {
+const addItemSuccess = (listName) => {
   return {
     type: ACTIONS.ADD_ITEM_SUCCESS,
-    payload: newItem,
     listName: listName,
   };
 };
@@ -41,7 +41,7 @@ const addItemSuccess = (listName, newItem) => {
 const addItemFailure = (listName, strError) => {
   return {
     type: ACTIONS.ADD_ITEM_FAILURE,
-    payload: "Add item error! " + strError,
+    payload: "Add item error! " + (strError ? strError : "Lỗi call api!"),
     listName: listName,
   };
 };
@@ -53,10 +53,9 @@ const deleteItem = (listName) => {
   };
 };
 
-const deleteItemSuccess = (listName, idItem) => {
+const deleteItemSuccess = (listName) => {
   return {
     type: ACTIONS.DEL_ITEM_SUCCESS,
-    payload: idItem,
     listName: listName,
   };
 };
@@ -64,7 +63,7 @@ const deleteItemSuccess = (listName, idItem) => {
 const deleteItemFailure = (listName, strError) => {
   return {
     type: ACTIONS.DEL_ITEM_FAILURE,
-    payload: "Delete item error! " + strError,
+    payload: "Delete item error! " + (strError ? strError : "Lỗi call api!"),
     listName: listName,
   };
 };
@@ -76,10 +75,9 @@ const editItem = (listName) => {
   };
 };
 
-const editItemSuccess = (listName, editItem) => {
+const editItemSuccess = (listName) => {
   return {
     type: ACTIONS.EDIT_ITEM_SUCCESS,
-    payload: editItem,
     listName: listName,
   };
 };
@@ -87,7 +85,7 @@ const editItemSuccess = (listName, editItem) => {
 const editItemFailure = (listName, strError) => {
   return {
     type: ACTIONS.EDIT_ITEM_FAILURE,
-    payload: "Edit item error! " + strError,
+    payload: "Edit item error! " + (strError ? strError : "Lỗi call api!"),
     listName: listName,
   };
 };

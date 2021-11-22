@@ -12,7 +12,7 @@ const EditTodo = () => {
   const { id } = useParams();
 
   const todos = useSelector((state) => state.todo.listData);
-  const editTodo = todos.filter((t) => t.id === id)[0];
+  const editTodo = todos.find((t) => t.id == id);
 
   const [todo, setTodo] = useState(editTodo);
   const isLoading = useSelector((state) => state.todo.isLoading);
@@ -30,13 +30,13 @@ const EditTodo = () => {
     });
   };
 
-  function excuteAfterDispatch(isSuccessNewest, errorMessageNewest) {
-    if (isSuccessNewest) {
+  function excuteAfterDispatch(globalStateNewest) {
+    if (globalStateNewest.todo.isSuccess) {
       history.push("/all-todo");
     } else {
       const variant = "error";
       // variant could be success, error, warning, info, or default
-      enqueueSnackbar(errorMessageNewest, { variant });
+      enqueueSnackbar(globalStateNewest.todo.errorMessage, { variant });
     }
   }
 

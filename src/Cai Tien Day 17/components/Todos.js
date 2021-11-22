@@ -48,21 +48,21 @@ const Todos = () => {
   const [selectionModel, setSelectionModel] = useState([]);
 
   useEffect(() => {
-    fetchAllTodo();
+    // liên quan tới data grid phải có set time out
+    //có set time out vì có lỗi nếu ko dùng, xem ở day 17 sẽ thấy lỗi đó và cách giải thích
+    setTimeout(() => {
+      dispatch(ListService.getAllItem(allList.TODO, excuteAfterDispatch));
+    });
   }, []);
 
-  function excuteAfterDispatch(isSuccessNewest, errorMessageNewest) {
-    if (isSuccessNewest) {
+  function excuteAfterDispatch(globalStateNewest) {
+    if (globalStateNewest.todo.isSuccess) {
     } else {
       const variant = "error";
       // variant could be success, error, warning, info, or default
-      enqueueSnackbar(errorMessageNewest, { variant });
+      enqueueSnackbar(globalStateNewest.todo.errorMessage, { variant });
     }
   }
-
-  const fetchAllTodo = () => {
-    dispatch(ListService.getAllItem(allList.TODO, excuteAfterDispatch));
-  };
 
   const onDeleteTodo = () => {
     //có set time out vì có lỗi nếu ko dùng, xem ở day 17 sẽ thấy lỗi đó và cách giải thích

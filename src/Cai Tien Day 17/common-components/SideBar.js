@@ -23,20 +23,20 @@ const SideBar = () => {
       link: "/",
     },
     {
-      name: "All user",
-      link: "/all-user",
-    },
-    {
-      name: "Add user",
-      link: "/add-user",
-    },
-    {
       name: "All todo",
       link: "/all-todo",
     },
     {
       name: "Add todo",
       link: "/add-todo",
+    },
+    {
+      name: "All user",
+      link: "/all-user",
+    },
+    {
+      name: "Add user",
+      link: "/add-user",
     },
     {
       name: "Add product",

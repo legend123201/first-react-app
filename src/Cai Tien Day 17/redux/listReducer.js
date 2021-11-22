@@ -43,35 +43,23 @@ const createListReducerNameData = (specifiedListName = "") => {
           isSuccess: true,
         };
       case ACTIONS.ADD_ITEM_SUCCESS:
-        //payload is new object
+        //payload is nothing
         return {
           ...state,
-          listData: [...state.listData, action.payload],
           isLoading: false,
           isSuccess: true,
         };
 
       case ACTIONS.DEL_ITEM_SUCCESS:
-        //payload is id
+        //payload is nothing
         return {
           ...state,
-          listData: state.listData.filter((i) => i.id !== action.payload),
           isLoading: false,
           isSuccess: true,
         };
       case ACTIONS.EDIT_ITEM_SUCCESS: {
-        let copyList = [...state.listData];
-
-        //payload is edit ITEM
-        //tìm phần tử đang sửa và sửa value
-        let updateItemIndex = copyList.findIndex(
-          (item) => item.id === action.payload.id
-        );
-        copyList[updateItemIndex] = { ...action.payload };
-
         return {
           ...state,
-          listData: copyList,
           isLoading: false,
           isSuccess: true,
         };

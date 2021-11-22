@@ -4,7 +4,7 @@
 
 - day 6: làm về thêm xóa sửa todoList, interval và giải thích về state.
 
-- day 10: làm về route, thêm xóa sửa todolist với ko có và có api. 
+- day 10: làm về route, thêm xóa sửa todolist với ko có và có api. Ở đây xài api "ko dùng redux", dùng tốt cho trường hợp gọi api gán cho state thôi chứ ko phải global state (cái này cũng ko chắc vì mình còn phải kiểm tra status, phải catch lỗi, ko biết nên dùng cách này hay là dùng myCallBack tiếp).
 
 - day 15: làm về thêm xóa sửa todoList với redux + api.
 
