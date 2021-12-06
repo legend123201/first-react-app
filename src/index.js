@@ -1,10 +1,34 @@
 import React from "react"; //import object React từ module react, module này trong nodejs
 import ReactDOM from "react-dom";
-//import "bootstrap/dist/css/bootstrap.css";
+import Game from "./game tau chien/Game";
+// import "bootstrap/dist/css/bootstrap.css";
 
 //import name, { birth, getLastName } from "./Day 5/Name"; //cách import 1
 //import * as name2 from "./Day 5/Name2"; //cách import 2
 
+//-----------------------game tau chien--------------------------------
+import { BrowserRouter } from "react-router-dom";
+import { Route, Switch } from "react-router";
+import Page1 from "./game tau chien/Page1";
+import Page2 from "./game tau chien/Page2";
+import Page3 from "./game tau chien/Page3";
+
+ReactDOM.render(
+  <>
+    <Game></Game>
+    <BrowserRouter>
+      <h1>Header</h1>
+      <Switch>
+        <Route exact path="/" component={Page1}></Route>
+        <Route path="/page2" component={Page2}></Route>
+        <Route path="/page3" component={Page3}></Route>
+      </Switch>
+    </BrowserRouter>
+  </>,
+  document.getElementById("root")
+);
+
+/*
 //-----------------------Day 17--------------------------------
 import App from "./Cai Tien Day 17/App";
 import { Provider } from "react-redux";
@@ -19,6 +43,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+*/
 
 /*
 //-----------------------reduxTutorial--------------------------------
