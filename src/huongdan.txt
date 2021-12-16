@@ -1,3 +1,5 @@
+- cách tạo file .prettierrc đã ghi trong github typescript
+
 - components: là từ video đầu tiên về react, làm về counter, và dùng class component.
 
 - day 5: làm về export, export default và cách import.

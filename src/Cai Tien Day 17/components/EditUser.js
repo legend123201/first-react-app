@@ -31,13 +31,13 @@ const EditUser = () => {
     });
   };
 
-  function excuteAfterDispatch(isSuccessNewest, errorMessageNewest) {
-    if (isSuccessNewest) {
+  function excuteAfterDispatch(globalStateNewest) {
+    if (globalStateNewest.todo.isSuccess) {
       history.push("/all-user");
     } else {
       const variant = "error";
       // variant could be success, error, warning, info, or default
-      enqueueSnackbar(errorMessageNewest, { variant });
+      enqueueSnackbar(globalStateNewest.todo.errorMessage, { variant });
     }
   }
 

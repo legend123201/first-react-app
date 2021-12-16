@@ -2,10 +2,27 @@ import React from "react"; //import object React từ module react, module này 
 import ReactDOM from "react-dom";
 import Game from "./game tau chien/Game";
 // import "bootstrap/dist/css/bootstrap.css";
+import "./app.scss";
 
 //import name, { birth, getLastName } from "./Day 5/Name"; //cách import 1
 //import * as name2 from "./Day 5/Name2"; //cách import 2
 
+//-----------------------Day 17--------------------------------
+import App from "./Cai Tien Day 17/App";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import store from "./store";
+
+ReactDOM.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
+);
+
+/*
 //-----------------------game tau chien--------------------------------
 import { BrowserRouter } from "react-router-dom";
 import { Route, Switch } from "react-router";
@@ -25,22 +42,6 @@ ReactDOM.render(
       </Switch>
     </BrowserRouter>
   </>,
-  document.getElementById("root")
-);
-
-/*
-//-----------------------Day 17--------------------------------
-import App from "./Cai Tien Day 17/App";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import store from "./store";
-
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
   document.getElementById("root")
 );
 */
