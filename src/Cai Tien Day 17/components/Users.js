@@ -49,28 +49,42 @@ const Users = () => {
 
     const [selectionModel, setSelectionModel] = useState([]);
 
-    useEffect(() => {
-        fetchAllUser();
-    }, []);
-
-    function excuteAfterDispatch(globalStateNewest) {
-        if (globalStateNewest.todo.isSuccess) {
-        } else {
+    function excuteAfterGetAllItem(globalStateNewest) {
+        if (!globalStateNewest.user.isSuccess) {
             const variant = "error";
             // variant could be success, error, warning, info, or default
-            enqueueSnackbar(globalStateNewest.todo.errorMessage, { variant });
+            enqueueSnackbar(globalStateNewest.user.errorMessage, { variant });
         }
     }
 
-    const fetchAllUser = () => {
-        dispatch(ListService.getAllItem(allList.USER, excuteAfterDispatch));
-    };
+    function excuteAfterDeleteItem(globalStateNewest) {
+        if (globalStateNewest.user.isSuccess) {
+            setTimeout(() => {
+                dispatch(ListService.getAllItem(allList.USER, excuteAfterGetAllItem));
+            });
+            const variant = "success";
+            // variant could be success, error, warning, info, or default
+            enqueueSnackbar("Delete success", { variant });
+        } else {
+            const variant = "error";
+            // variant could be success, error, warning, info, or default
+            enqueueSnackbar(globalStateNewest.user.errorMessage, { variant });
+        }
+    }
+
+    useEffect(() => {
+        // liên quan tới data grid phải có set time out
+        //có set time out vì có lỗi nếu ko dùng, xem ở day 17 sẽ thấy lỗi đó và cách giải thích
+        setTimeout(() => {
+            dispatch(ListService.getAllItem(allList.USER, excuteAfterGetAllItem));
+        });
+    }, []);
 
     const onDeleteUser = () => {
         //có set time out vì có lỗi nếu ko dùng, xem ở day 17 sẽ thấy lỗi đó và cách giải thích
         if (selectionModel.length === 1) {
             setTimeout(() => {
-                dispatch(ListService.deleteItem(allList.USER, selectionModel[0], excuteAfterDispatch));
+                dispatch(ListService.deleteItem(allList.USER, selectionModel[0], excuteAfterDeleteItem));
             });
         }
     };
